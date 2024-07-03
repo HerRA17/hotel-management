@@ -45,6 +45,6 @@ const Footer = () => {
         <div className="bg-tertiary-light h-10 md:hd-[70px] mt-16 w-full bottom-0 left-0"/>
     </footer>
     )
-}
+};
 
-export default Footer
+export default Footer;

@@ -32,6 +32,6 @@ const Header = () => {
             </ul>
         </header>
     )
-}
+};
 
-export default Header
+export default Header;
