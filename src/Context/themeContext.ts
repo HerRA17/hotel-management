@@ -6,7 +6,7 @@ type ThemeContextType = {
 };
 
 const ThemeContext = createContext<ThemeContextType>({
-    darkTheme: false,
+    darkTheme: true,
     setDarkTheme: () => null,
 });
 
