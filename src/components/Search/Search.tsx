@@ -27,7 +27,7 @@ type Props = {
     <section className="bg-tertiary-light px-4 py-4 rounded-lg m-2">
         <div className="container mx-auto flex gap-4 flex-wrap justify-between items-center">
             <div className="w-full md:1/3 mb-0 lg:w-auto mb-4">
-                <label htmlFor="block text-sm font-medium mb-2 text-black">Room Type</label>
+                <label htmlFor="roomType" className="block text-sm font-medium mb-2 text-black">Room Type</label>
                 <div className="relative">
                     <select 
                     value={roomTypeFilter}
