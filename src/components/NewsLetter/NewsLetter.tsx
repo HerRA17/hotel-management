@@ -7,7 +7,9 @@ const NewsLetter = () => {
             <div className="flex-col justify-center w-full md:flex-row flex pt-12 ">
                 <input 
                 type="email"
+                id="email-newsL"
                 placeholder="Your email"
+                autoComplete="off"
                 className="bg-[#026057] h-11 md:h-16 mb-2 md:mb-0 rounded-xl pl-6 md:mr-5 md:w-[452px] text-white placholder: text-white focus:outline-none"
                 />
                 <button className="btn-tertiary">Subscribe</button>
