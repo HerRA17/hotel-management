@@ -5,6 +5,7 @@ import PageSearch from "@/components/PageSearch/PageSearch";
 import FeaturedRoom from "@/components/FeaturedRoom/FeaturedRoom";
 import { getFeaturedRoom } from "@/libs/apis";
 
+
 const Home = async () => {
   const featuredRoom = await getFeaturedRoom();
   
