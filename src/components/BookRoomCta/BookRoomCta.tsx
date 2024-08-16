@@ -6,9 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 type Props = {
     adults: number;
-    setAdults: Dispatch<SetStateAction<Date | null>>;
+    setAdults: Dispatch<SetStateAction<number>>;
     amountChildren: number;
-    setAmountChildren: Dispatch<SetStateAction<Date | null>>;
+    setAmountChildren: Dispatch<SetStateAction<number>>;
     checkInDate: Date | null;
     setCheckInDate: Dispatch<SetStateAction<Date | null>>;
     checkOutDate: Date | null;
@@ -83,7 +83,7 @@ const BookRoomCta: FC<Props> = (props) => {
                     className="block text-sm font-medium text-gray-900 dark:text-gray-400">
                         Adults
                     </label>
-                    <input type="number" id="adults" value={adults} onChange={e => setAdults(e.target.value)}
+                    <input type="number" id="adults" value={adults} onChange={e => setAdults(+e.target.value)}
                     min={1}
                     max={5}
                     className="w-full border border-gray-300 rounded-lg p-2.5" />
@@ -93,7 +93,7 @@ const BookRoomCta: FC<Props> = (props) => {
                     className="block text-sm font-medium text-gray-900 dark:text-gray-400">
                         Children
                     </label>
-                    <input type="number" id="adults" value={amountChildren} onChange={e => setAmountChildren(e.target.value)}
+                    <input type="number" id="adults" value={amountChildren} onChange={e => setAmountChildren(+e.target.value)}
                     min={0}
                     max={4}
                     className="w-full border border-gray-300 rounded-lg p-2.5" />
