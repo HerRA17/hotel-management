@@ -1,6 +1,6 @@
 "use client"
 
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -23,18 +23,18 @@ type Props = {
 
 const BookRoomCta: FC<Props> = (props) => {
     const { 
-        adults, amountChildren, checkInDate, checkOutDate, discount, isBooked, specialNote, setAdults,
+        adults, amountChildren, checkInDate, checkOutDate, discount, handleBookNowClick, isBooked, specialNote, setAdults,
         setAmountChildren, setCheckInDate, setCheckOutDate, price, calcMinCheckOutDate } = props;
 
     const discountPrice = price - (price / 100) * discount;
 
-    const calcAmountChildren = () => {
-        if(!checkInDate || !checkOutDate) return 0;
+    const calcNumOfDays = () => {
+        if (!checkInDate || !checkOutDate) return;
         const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
         const numOfDays = Math.ceil(timeDiff / (24 * 60 * 60 * 1000));
         return numOfDays;
-    };
-    // calcNoOfDays
+      };
+
     return (
         <div className="px-7 py-6">
             <h3>
