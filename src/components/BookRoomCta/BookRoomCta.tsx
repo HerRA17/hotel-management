@@ -29,7 +29,7 @@ const BookRoomCta: FC<Props> = (props) => {
     const discountPrice = price - (price / 100) * discount;
 
     const calcNumOfDays = () => {
-        if (!checkInDate || !checkOutDate) return;
+        if (!checkInDate || !checkOutDate) return 0;
         const timeDiff = checkOutDate.getTime() - checkInDate.getTime();
         const numOfDays = Math.ceil(timeDiff / (24 * 60 * 60 * 1000));
         return numOfDays;
@@ -99,8 +99,8 @@ const BookRoomCta: FC<Props> = (props) => {
                     className="w-full border border-gray-300 rounded-lg p-2.5" />
                 </div>
                 {calcNumOfDays() > 0 ? ( 
-                    <p className="mt-3">Total Price: $ {calcNumOfDays() * discountPrice}</p> 
-                 ) : ( <></> )};
+                    <p className="mt-3 ml-2">Total Price: $ {calcNumOfDays() * discountPrice}</p> 
+                 ) : ( <></> )}
                  <button disabled={isBooked}
                  onClick={handleBookNowClick} 
                  className="btn-rpimary w-full mt-6 disabled:br-gray-500 disabled:cursor">
