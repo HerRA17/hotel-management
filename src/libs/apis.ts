@@ -40,7 +40,7 @@ export const createBooking = async ({
             children, totalPrice, discount
          } }]
     };
-    const { data    } = await axios.post(
+    const { data } = await axios.post(
         `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2024-08-15/data/mutate/${process.env.NEXT_PUBLIC_SANITY_PROJECT_DATASET}`, 
         mutation,
         {headers: {Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}`}}
