@@ -9,8 +9,10 @@ import {LiaFireExtinguisherSolid} from "react-icons/lia";
 import {AiOutlineMedicineBox} from "react-icons/ai";
 import {GiSmokeBomb} from "react-icons/gi";
 import BookRoomCta from "@/components/BookRoomCta/BookRoomCta";
-import { useState } from "react";
+import { Children, useState } from "react";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { getStripe } from "@/libs/stripe";
 
 const RoomDetails  = (props: {params: {slug: string}}) => {
     const {params: { slug }} = props;
@@ -43,7 +45,31 @@ const RoomDetails  = (props: {params: {slug: string}}) => {
       
       const numberOfDays = calcNumOfDays(); 
       const hotelRoomSlug = room.slug.current;
-      
+      const stripe = await getStripe();
+
+      try {
+        const { data: stripeSession} = await axios.post("/api/stripe", {
+          adults,
+          checkInDate,
+          checkOutDate,
+          children: amountChildren,
+          numberOfDays,
+          hotelRoomSlug
+        });
+        
+        if(stripe) {
+          const result = await stripe.redirectToCheckout({
+            sessionId: stripeSession.id
+          });
+
+        if(result.error) {
+          toast.error("payment Failed");
+        }
+        }
+      } catch (error){
+        console.log("Error: ", error);
+        toast.error("An error ocurred");
+      }
       };
 
       const calcNumOfDays = () => {
