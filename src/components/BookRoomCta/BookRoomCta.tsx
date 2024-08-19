@@ -99,14 +99,14 @@ const BookRoomCta: FC<Props> = (props) => {
                     className="w-full border border-gray-300 rounded-lg p-2.5" />
                 </div>
                 {calcNumOfDays() > 0 ? ( 
-                    <p className="mt-3 ml-2">Total Price: $ {calcNumOfDays() * discountPrice}</p> 
+                    <p className="mt-3 ml-2 mr-2">Total Price: $ {calcNumOfDays() * discountPrice}</p> 
                  ) : ( <></> )}
-                 <button disabled={isBooked}
-                 onClick={handleBookNowClick} 
-                 className="btn-rpimary w-full mt-6 disabled:br-gray-500 disabled:cursor">
-                    {isBooked ? "Booked" : "Book now"}
-                 </button>
             </div>
+            <button disabled={isBooked}
+                 onClick={handleBookNowClick} 
+                 className="btn-primary w-full m-4 disabled:br-gray-500 disabled:cursor">
+                    {isBooked ? "Booked" : "Book now"}
+            </button>
         </div>
     )
 };
