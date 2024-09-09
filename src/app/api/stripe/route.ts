@@ -31,8 +31,8 @@ export async function POST(req: Request, res: Response) {
     }
 
     const userId = session.user.id;
-    const formatteDCheckOutDate = checkOutDate.split("T")[0];
-    const formatteDCheckInDate = checkOutDate.split("T")[0];
+    const formattedCheckOutDate = checkOutDate.split("T")[0];
+    const formattedCheckInDate = checkInDate.split("T")[0];
 
     try {
         const room  = await getRoom(hotelRoomSlug);
@@ -57,7 +57,7 @@ export async function POST(req: Request, res: Response) {
             payment_method_types: ["card"],
             success_url: `${origin}/users/${userId}`,
             metadata: {
-                adults, checkInDate, checkOutDate,
+                adults, checkInDate: formattedCheckInDate, checkOutDate: formattedCheckOutDate,
                 children, discount: room.discount, hotelRoom: room._id, 
                 numberOfDays, totalPrice, user: userId,
             }
@@ -71,4 +71,4 @@ export async function POST(req: Request, res: Response) {
         console.log("Payment failed", error);
         return new NextResponse(error, {status: 500})
     }
-}
+};
