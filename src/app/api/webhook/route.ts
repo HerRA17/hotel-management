@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createBooking } from "@/libs/apis";
+import { createBooking, updateHotelRoom } from "@/libs/apis";
 
 const checkout_session_completed = "checkout.session.completed";
 
@@ -38,6 +38,8 @@ export async function POST (req: Request, res: Response) {
             children: Number(children), discount: (discount), hotelRoom, 
             numberOfDays: Number(numberOfDays), totalPrice: Number(totalPrice),
             user});
+
+        await updateHotelRoom(hotelRoom);
         
             return NextResponse.json("Booking successful", {
                 status: 200,
@@ -48,7 +50,7 @@ export async function POST (req: Request, res: Response) {
             console.log(`Unhandled event type ${event.type}`)
     }
     
-    return NextResponse.json("Booking successful", {
+    return NextResponse.json("Event Received", {
         status: 200,
         statusText: "Event Received"
     });
