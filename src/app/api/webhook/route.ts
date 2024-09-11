@@ -41,7 +41,7 @@ export async function POST (req: Request, res: Response) {
 
         await updateHotelRoom(hotelRoom);
         
-            return NextResponse.json("Booking successful", {
+        return NextResponse.json("Booking successful", {
                 status: 200,
                 statusText: "Event Successful"
             });
