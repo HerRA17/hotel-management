@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 type Props = {
     bookingDetails: Booking[];
     setRoomId: Dispatch<SetStateAction<string|null>>;
+    toggleRatingModal: () => void;
 };
 
-const Table: FC<Props> = ({bookingDetails, setRoomId }) => {
+const Table: FC<Props> = ({bookingDetails, setRoomId, toggleRatingModal }) => {
 const router = useRouter();
 
     return <div className="overflow-x-auto max-w-[340] rounded-lg mx-auto md:max-w-full shadow-md sm:rounded-lg">
@@ -39,7 +40,10 @@ const router = useRouter();
                      <td className="px-6 py-4">0</td>
                      <td className="px-6 py-4">
                         <button className="font-medium text-blue-600 hover:underline" 
-                            onClick={() => setRoomId(booking.hotelRoom._id)}>
+                            onClick={() => {
+                                setRoomId(booking.hotelRoom._id);
+                                toggleRatingModal();
+                            }}>
                             Rate
                         </button>
                      </td>

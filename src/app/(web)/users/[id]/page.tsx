@@ -13,20 +13,52 @@ import { BsJournalBookmarkFill } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import Table from "@/components/Table/Table";
 import Chart from "@/components/Chart/Chart";
+import RatingModal from "@/components/RatingModal/RatingModal";
+import BackDrop from "@/components/BackDrop/BackDrop";
+import toast from "react-hot-toast";
 
  const UserDetails = (props: {params: { id:string }}) => {
   
   const { params: {id: userId} } = props;
-
   const [currentNav, SetCurrentNav] = useState<"bookings" | "amount" | "ratings">("bookings");
-
   const [roomId, setRoomId] = useState<string|null>(null);
+  const [isRatingVisible, setIsRatingVisible] = useState(false);
+  const [ratingValue, setRatingValue]= useState<number | null>(0);
+  const [ratingText, setRatingText] = useState("");
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
+
+  const toggleRatingModal = () => setIsRatingVisible(prevState => !prevState);
+
+  const reviewSubmitHandler = async () => {
+    if(!ratingText.trim().length || !ratingValue) {
+        return toast.error("Please provide a rating text and a rating");
+    }
+
+    if(!roomId) return toast.error("Id not provided");
+
+    setIsSubmittingReview(true);
+        
+        try{
+            const { data } = await axios.post("/api/users", {ratingValue, reviewText: ratingText, roomId, });
+            console.log(data);
+            toast.success("Review Successful");
+        } catch (error) {
+            console.log(error);
+            toast.error("Review Failed");
+        } finally {
+            setRatingText("");
+            setRatingValue(null);
+            setRoomId(null);
+            setIsRatingVisible(false);
+            setIsSubmittingReview(false);
+        }
+  };
 
   const fetchUserBooking = async () => getUserBookings(userId);
   const fetchUserData = async () => {
   const { data } = await axios.get<User>("/api/users"); 
     return data;  
-    }
+    };
   
   const {data: userBookings, error, isLoading} = useSWR("/api/userbooking", fetchUserBooking);
 
@@ -62,7 +94,7 @@ import Chart from "@/components/Chart/Chart";
             </div>
             <div className="flex items-center">
                 <p className="mr-2">Sign Out</p>
-                <FaSignOutAlt className="text-3xl cursor-pointer" onClik={() => signOut({ callbackUrl: "/" })}/>
+                <FaSignOutAlt className="text-3xl cursor-pointer" onClick={() => signOut({ callbackUrl: "/" })}/>
             </div>
         </div>
         <div className="md:col-span-8 lg:col-span-9">
@@ -98,10 +130,15 @@ import Chart from "@/components/Chart/Chart";
                     </li>
                 </ol>
             </nav>
-            {currentNav === "bookings" ? userBookings && <Table bookingDetails={userBookings} setRoomId={setRoomId}/> : <></>}
+            {currentNav === "bookings" ? userBookings && <Table bookingDetails={userBookings} 
+            setRoomId={setRoomId} toggleRatingModal={toggleRatingModal}/> : <></>}
             {currentNav === "amount" ? (userBookings && <Chart userBookings={userBookings} />) : (<></>)}
         </div>
       </div>
+      <RatingModal isOpen={isRatingVisible} ratingValue={ratingValue} setRatingValue={setRatingValue}
+        ratingText={ratingText} setRatingText={setRatingText} toggleRatingModal={toggleRatingModal} 
+        isSubmittingReview={isSubmittingReview} reviewSubmitHandler={reviewSubmitHandler}/>
+      <BackDrop isOpen={isRatingVisible} />
     </div>
   )
 };
