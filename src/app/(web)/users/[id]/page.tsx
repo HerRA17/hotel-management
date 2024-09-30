@@ -111,7 +111,7 @@ import toast from "react-hot-toast";
             <p className="text-xs py-2 font-md">Joined in {userData._createdAt.split("T")[0]}</p>
             <div className="md: hidden flex items-center my-2">
                 <p className="mr-2">Sign Out</p>
-                <FaSignOutAlt className="text-3xl cursor-pointer" onClik={() => signOut({ callbackUrl: "/" })}/>
+                <FaSignOutAlt className="text-3xl cursor-pointer" onClick={() => signOut({ callbackUrl: "/" })}/>
             </div>
             <nav className="sticky top-0 px-2 w-fit mx-auto md:w-full md:px-5 py-3 mb-8 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 mt-7">
                 <ol className={`${currentNav === "bookings" ? "text-blue-600" : "text-gray-600"}
