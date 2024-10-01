@@ -5,6 +5,7 @@ import axios from "axios";
 import { Booking } from "@/app/models/booking";
 import { UpdateReviewDto } from "@/app/models/review";
 import { CreateReviewDto } from "@/app/models/review";
+import { Review } from "@/app/models/review";
 
 export async function getFeaturedRoom () {
     const result = await sanityClient.fetch<Room>(
@@ -148,4 +149,12 @@ export const createReview = async ({hotelRoomId, reviewText, userId, userRating}
         {headers: {Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}`}}
     );
     return data;
+};
+
+export async function getRoomReviews(roomId:string) {
+    const result = await sanityClient.fetch<Review[]>(queries.getRoomReviewsQuery, {
+        roomId },
+        {cache: "no-cache"}
+    );
+    return result;
 };

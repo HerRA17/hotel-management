@@ -77,7 +77,7 @@ import toast from "react-hot-toast";
     <div className="container mx-auto px-2 md:px-4 py-10">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4">
-            <div className="md:w-[143px] w-38 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
+            <div className="md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden">
                 <Image 
                 src={userData.image}    alt={userData.name} 
                 width={143}   height={143} 
