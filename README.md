@@ -1,5 +1,5 @@
 # Overview
-Our hotel management app is designed to streamline the experience of finding and booking accommodations. It serves as a comprehensive platform offering detailed information about a wide range of rooms of hotels. Guests can easily access up-to-date availability, view high-quality images of hotel rooms, and read through guest ratings to make informed decisions. Whether planning a business trip or a leisure getaway, our app provides all the necessary tools to ensure users find the perfect stay tailored to their needs.
+The Hotel Management App simulates a full-featured accommodation booking system. It serves as an extensive resource, offering comprehensive details and high-quality images of various hotel rooms. Users can check real-time availability, read guest reviews, and seamlessly book their ideal hotel, whether for business or leisure. This app ensures a streamlined booking process tailored to user preferences, enhancing the overall planning and stay experience.
 
 ## Features
 ### Room Booking: 
