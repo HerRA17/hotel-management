@@ -28,8 +28,7 @@ const HotelGallery: FC<{ photos: ImageRoom[] }> = ({photos}) => {
     const totalPhotos = photos.length;
     const displayPhotos = photos.slice(1, maxVisiblePhotos - 1);
     const remainingPhotosCount = totalPhotos - maxVisiblePhotos;
-    console.log(photos);
-    console.log(Image);
+    
     return <div className="container mx-auto">
             <div className="grid md:grid-cols-2 relative gap-5 px-3">
                 <div className="h-[540px] relative rounded-2xl overflow-hidden">

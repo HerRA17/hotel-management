@@ -44,7 +44,7 @@ const Auth = () => {
             if(user) {
                 toast.success("Success. Please Sign in")
             } 
-            // console.log(formData)
+        
         } catch (error) {
             console.log(error)
             toast.error("Something went wrong")
