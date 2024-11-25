@@ -10,7 +10,7 @@ export async function GET(req: Request, res: Response) {
         new NextResponse("Authentication Required", { status: 500});
     }
 
-    const userId = session.user.id;
+    const userId = session?.user?.id;
     try {
         const data = await getUserData(userId);
         return NextResponse.json(data, { status: 200, statusText: "Successful"}) 
@@ -29,9 +29,9 @@ export async function POST(req: Request, res: Response) {
     const { roomId, reviewText, ratingValue } = await req.json();
 
     if(!roomId || !reviewText || !ratingValue) {
-        new NextResponse("All Fields are Required", { status: 400});
+        new NextResponse("All fields are Required", { status: 400});
     }
-    const userId = session.user.id
+    const userId = session?.user?.id
 
     try{
         const alreadyExists = await checkReviewExists(userId, roomId);
